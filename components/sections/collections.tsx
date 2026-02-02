@@ -5,37 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, ShoppingBag, Star } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
-
-const featuredCollections = [
-  {
-    title: "Ankara Collection",
-    items: 24,
-    designer: "African Threads",
-    rating: 4.9,
-    image: "/collections/ankara.jpg",
-  },
-  {
-    title: "Urban Streetwear",
-    items: 42,
-    designer: "City Styles Lagos",
-    rating: 4.7,
-    image: "/collections/streetwear.jpg",
-  },
-  {
-    title: "Bohemian Africa",
-    items: 18,
-    designer: "Free Spirit",
-    rating: 4.8,
-    image: "/collections/bohemian.jpg",
-  },
-  {
-    title: "Minimalist Elegance",
-    items: 36,
-    designer: "Simple Living",
-    rating: 4.9,
-    image: "/collections/minimalist.jpg",
-  },
-];
+import { collections } from "./collection-grid";
 
 export default function Collections() {
   return (
@@ -79,9 +49,9 @@ export default function Collections() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {featuredCollections.map((collection, index) => (
+          {collections.map((collection, index) => (
             <motion.div
-              key={collection.title}
+              key={collection.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -90,7 +60,7 @@ export default function Collections() {
               className="group"
             >
               <Link
-                href={`/collections/${collection.title
+                href={`/collections/${collection.id
                   .toLowerCase()
                   .replace(/\s+/g, "-")}`}
               >
@@ -115,7 +85,7 @@ export default function Collections() {
 
                   <div className="p-6">
                     <h3 className="text-xl font-bold mb-2 text-card-foreground group-hover:text-primary transition-colors">
-                      {collection.title}
+                      {collection.name}
                     </h3>
                     <p className="text-muted-foreground mb-4">
                       by {collection.designer}
